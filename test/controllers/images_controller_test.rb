@@ -7,4 +7,13 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_select 'form'
   end
+
+  test 'test create' do
+    assert_difference 'Image.count' do
+      post images_path, params: { image: { link: 'http://www.google.com/' }}
+    end
+
+    assert_response :no_content
+    assert_equal 'http://www.google.com/', Image.last.link
+  end
 end

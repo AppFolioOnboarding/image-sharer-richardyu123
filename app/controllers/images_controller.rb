@@ -4,6 +4,8 @@ class ImagesController < ApplicationController
   def create
     new_image = Image.new(new_image_params)
     new_image.save!
+
+    redirect_to(image_path(new_image))
   end
 
   def show

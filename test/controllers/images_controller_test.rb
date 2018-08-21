@@ -13,7 +13,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       post images_path, params: { image: { link: 'http://www.google.com/' }}
     end
 
-    assert_response :no_content
+    assert_redirected_to image_path(Image.last)
     assert_equal 'http://www.google.com/', Image.last.link
   end
 

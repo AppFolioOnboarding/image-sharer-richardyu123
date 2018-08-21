@@ -3,9 +3,13 @@ class ImagesController < ApplicationController
 
   def create
     new_image = Image.new(new_image_params)
-    new_image.save!
+    if new_image.valid?
+      new_image.save!
 
-    redirect_to(image_path(new_image))
+      redirect_to(image_path(new_image))
+    else
+      render :new, locals: { errors: new_image.errors[:link] }, status: :unprocessable_entity
+    end
   end
 
   def show

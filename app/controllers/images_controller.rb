@@ -13,7 +13,11 @@ class ImagesController < ApplicationController
   end
 
   def show
-    @image = Image.find(params[:id])
+    if Image.exists?(params[:id])
+      @image = Image.find(params[:id])
+    else
+      render :new, locals: { errors: 'Page Not Found' }, status: :not_found
+    end
   end
 
   private

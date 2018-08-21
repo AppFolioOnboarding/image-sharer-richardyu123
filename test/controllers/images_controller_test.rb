@@ -26,6 +26,13 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '.js-errors', %(["can't be blank", "is not a valid URL"])
   end
 
+  test 'test invalid address' do
+    get image_path('123123')
+
+    assert_response :not_found
+    assert_select 'form'
+  end
+
   test 'test show' do
     image = Image.create!(link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bucephala-albeola-010.jpg/1200px-Bucephala-albeola-010.jpg')
 

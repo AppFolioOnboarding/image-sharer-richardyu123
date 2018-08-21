@@ -3,7 +3,7 @@
     <%= form.label :link %><br>
     <%= form.text_field :link %>
   </p>
-  <span class="js-errors"> <%= errors if errors.present? %> </span>
+  <span class="js-errors"> <%= errors if local_assigns[:errors] %> </span>
   <p>
     <%= form.submit %>
   </p>

@@ -2,8 +2,8 @@
   <p>
     <%= form.label :link %><br>
     <%= form.text_field :link %>
-    <span class="js-errors"><%= errors if errors.present? %></span>
   </p>
+  <span class="js-errors"> <%= errors if errors.present? %> </span>
   <p>
     <%= form.submit %>
   </p>

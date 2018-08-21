@@ -10,7 +10,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'test create' do
     assert_difference 'Image.count' do
-      post images_path, params: { image: { link: 'http://www.google.com/' }}
+      post images_path, params: { image: { link: 'http://www.google.com/' } }
     end
 
     assert_redirected_to image_path(Image.last)
@@ -19,7 +19,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'test create failure' do
     assert_no_difference 'Image.count' do
-      post images_path, params: { image: { link: '' }}
+      post images_path, params: { image: { link: '' } }
     end
 
     assert_response :unprocessable_entity

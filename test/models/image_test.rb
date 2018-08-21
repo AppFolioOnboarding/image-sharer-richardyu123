@@ -4,7 +4,7 @@ class ImageTest < ActiveSupport::TestCase
   test 'link exists' do
     image = Image.new
 
-    refute_predicate image, :valid?
+    assert_not_predicate image, :valid?
   end
 
   test 'link is valid' do
@@ -14,6 +14,6 @@ class ImageTest < ActiveSupport::TestCase
 
     image = Image.new(link: 'invalid url')
 
-    refute_predicate image, :valid?
+    assert_not_predicate image, :valid?
   end
 end

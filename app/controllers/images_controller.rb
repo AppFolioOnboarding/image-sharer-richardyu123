@@ -6,6 +6,10 @@ class ImagesController < ApplicationController
     new_image.save!
   end
 
+  def show
+    @image = Image.find(params[:id])
+  end
+
   private
 
   def new_image_params

@@ -1,0 +1,9 @@
+<%= form_with scope: :image, local: true do |form| %>
+  <p>
+    <%= form.label :link %><br>
+    <%= form.text_field :link %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

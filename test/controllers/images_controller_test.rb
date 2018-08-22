@@ -41,4 +41,19 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_select 'img'
   end
+
+  test 'test image index' do
+    get images_path
+
+    assert_response :ok
+    assert_select 'img', 0
+  end
+
+  test 'test index with image' do
+    Image.create!(link: 'http://www.google.com/')
+    get images_path
+
+    assert_response :ok
+    assert_select 'img'
+  end
 end

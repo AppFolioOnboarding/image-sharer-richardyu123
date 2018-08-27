@@ -1,10 +1,9 @@
-<%= form_with scope: :image, url: images_path, local: true do |form| %>
+<%= simple_form_for @image do |form| %>
   <p>
-    <%= form.label :link %><br>
-    <%= form.text_field :link %>
+    <%= form.input :link, label: 'Image link' %>
   </p>
   <span class="js-errors"> <%= errors if local_assigns[:errors] %> </span>
   <p>
-    <%= form.submit %>
+    <%= form.button :submit %>
   </p>
 <% end %>

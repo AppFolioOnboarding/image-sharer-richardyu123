@@ -26,3 +26,7 @@ body {
   max-width: 1200px;
   padding: 0 15px;
 }
+
+form, input, label, p {
+  color: white !important;
+}

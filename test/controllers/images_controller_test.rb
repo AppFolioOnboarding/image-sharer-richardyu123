@@ -17,13 +17,22 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 'http://www.google.com/', Image.last.link
   end
 
-  test 'test create failure' do
+  test 'test create failure on blank' do
     assert_no_difference 'Image.count' do
       post images_path, params: { image: { link: '' } }
     end
 
     assert_response :unprocessable_entity
-    assert_select '.js-errors', %(["can't be blank", "is not a valid URL"])
+    assert_select '.js-errors', %(can't be blank)
+  end
+
+  test 'test create failure on invalid url' do
+    assert_no_difference 'Image.count' do
+      post images_path, params: { image: { link: 'a' } }
+    end
+
+    assert_response :unprocessable_entity
+    assert_select '.js-errors', %(is not a valid URL)
   end
 
   test 'test invalid address' do

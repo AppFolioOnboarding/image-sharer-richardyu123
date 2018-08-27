@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
+    <title>Image Sharer</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -12,8 +12,24 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'sticky-footer', media: 'all' %>
+    <%= stylesheet_link_tag 'custom' %>
+<!--    <link href="sticky-footer.css" rel="stylesheet">-->
   </head>
   <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Image Sharer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="/images">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="/images/new">New</a>
+      </div>
+    </div>
+  </nav>
+
     <%= yield %>
 
     <!-- Optional JavaScript -->
@@ -24,5 +40,11 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">Share Images!</span>
+    </div>
+  </footer>
   </body>
 </html>

@@ -1,3 +1,11 @@
-<% @images.each do |img| %>
-  <%= image_tag(img.link, width: "400") %>
-<%end %>
+<div class="album text-muted">
+  <div class="container">
+    <div class="row">
+      <% @images.each do |img| %>
+        <div class="card">
+          <%= image_tag(img.link, width: "350")%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

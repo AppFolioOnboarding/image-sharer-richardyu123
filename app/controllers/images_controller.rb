@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
       redirect_to(image_path(new_image))
     else
       @image = Image.new
-      render :new, locals: { errors: new_image.errors[:link] }, status: :unprocessable_entity
+      render :new, locals: { errors: new_image.errors[:link][0] }, status: :unprocessable_entity
     end
   end
 

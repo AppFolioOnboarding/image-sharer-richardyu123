@@ -27,6 +27,10 @@ class ImagesController < ApplicationController
     end
   end
 
+  def share
+    @image = Image.find(params[:image_id])
+  end
+
   private
 
   def new_image_params

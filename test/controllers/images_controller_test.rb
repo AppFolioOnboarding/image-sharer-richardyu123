@@ -65,4 +65,20 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_select 'img'
   end
+
+  test 'test index has share button' do
+    image = Image.create!(link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bucephala-albeola-010.jpg/1200px-Bucephala-albeola-010.jpg')
+    get images_path
+
+    assert_response :ok
+    assert_select "a.btn[href=\"#{image_share_path(image)}\"]", text: 'Share'
+  end
+
+  test 'test share image page' do
+    image = Image.create!(link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bucephala-albeola-010.jpg/1200px-Bucephala-albeola-010.jpg')
+    get image_share_path(image)
+
+    assert_response :ok
+    assert_select 'img'
+  end
 end

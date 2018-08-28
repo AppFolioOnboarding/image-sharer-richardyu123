@@ -27,6 +27,6 @@ body {
   padding: 0 15px;
 }
 
-form, label, p {
+form, label {
   color: white !important;
 }

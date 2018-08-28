@@ -65,4 +65,19 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_select 'img'
   end
+
+  test 'test adding tags' do
+    Image.create!(link: 'https://www.google.com/', tag_list: 'a, b, c, d')
+    get new_image_path
+
+    assert_response :ok
+  end
+
+  test 'test tags show on index' do
+    Image.create!(link: 'https://www.google.com/', tag_list: 'a, b, c, d')
+    get images_path
+
+    assert_response :ok
+    assert_select 'a, b, c, d'
+  end
 end

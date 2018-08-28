@@ -8,8 +8,10 @@ else
 end
 ChangeCollationForTagNames.class_eval do
   def up
+    # rubocop:disable Style/GuardClause
     if ActsAsTaggableOn::Utils.using_mysql?
-      execute("ALTER TABLE tags MODIFY name varchar(255) CHARACTER SET utf8 COLLATE utf8_bin;")
+      execute('ALTER TABLE tags MODIFY name varchar(255) CHARACTER SET utf8 COLLATE utf8_bin;')
     end
+    # rubocop:enable Style/GuardClause
   end
 end

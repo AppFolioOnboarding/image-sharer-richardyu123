@@ -143,4 +143,12 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to images_path
   end
+
+  test 'test delete button shows' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    get image_path(image)
+
+    assert_response :ok
+    assert_select '.btn.btn-danger'
+  end
 end

@@ -92,7 +92,8 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     get images_path
 
     assert_response :ok
-    assert_select 'p', text: 'tag1, tag2'
+    assert_select 'p a:nth-child(1)', text: 'tag1'
+    assert_select 'p a:nth-child(2)', text: 'tag2'
   end
 
   test 'test form to fill tags' do
@@ -100,5 +101,37 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_select 'div[class="form-group string optional image_tag_list"]'
+  end
+
+  test 'test images with a certain tag show' do
+    Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    Image.create!(link: 'https://www.image2.com/', tag_list: 'a, b')
+
+    get images_path(tags: 'a')
+
+    assert_response :ok
+    assert_select 'img[src="https://www.image1.com/"]'
+    assert_select 'img[src="https://www.image2.com/"]'
+  end
+
+  test 'test images without a certain tag do not show' do
+    Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    Image.create!(link: 'https://www.image2.com/', tag_list: 'a, b')
+
+    get images_path(tags: 'c')
+
+    assert_response :ok
+    assert_select 'img[src="https://www.image1.com/"]'
+    assert_select 'img[src="https://www.image2.com/"]', false
+  end
+
+  test 'test no images for unused tag' do
+    Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    Image.create!(link: 'https://www.image2.com/', tag_list: 'a, b')
+
+    get images_path(tags: 'd')
+
+    assert_response :ok
+    assert_select 'img', false
   end
 end

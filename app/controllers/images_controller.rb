@@ -33,6 +33,15 @@ class ImagesController < ApplicationController
     end
   end
 
+  def destroy
+    if Image.exists?(params[:id])
+      image = Image.find(params[:id])
+      image.destroy!
+    end
+
+    redirect_to(images_path)
+  end
+
   private
 
   def new_image_params

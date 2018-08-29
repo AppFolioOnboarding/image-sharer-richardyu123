@@ -134,4 +134,13 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_select 'img', false
   end
+
+  test 'test destroy' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    assert_difference 'Image.count', -1 do
+      delete image_path(image)
+    end
+
+    assert_redirected_to images_path
+  end
 end

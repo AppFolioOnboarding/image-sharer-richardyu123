@@ -80,5 +80,41 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_select 'img'
+
+  test 'test adding tags' do
+    Image.create!(link: 'https://www.google.com/', tag_list: 'a, b, c, d')
+    get new_image_path
+
+    assert_response :ok
+  end
+
+  test 'test tags show on index' do
+    Image.create!(link: 'https://www.google.com/', tag_list: 'a, b, c, d')
+    get images_path
+
+    assert_response :ok
+    assert_select 'div[class="card"]'
+    assert_select 'img[src="https://www.google.com/"]'
+    assert_select 'a, b, c, d'
+  end
+
+  test 'test multiple tags separated by comma' do
+    image = Image.create!(link: 'https://www.google.com/')
+    image.tags.create(name: 'tag1')
+    image.tags.create(name: 'tag2')
+    image.save!
+
+    get images_path
+
+    assert_response :ok
+    assert_select 'p', text: 'tag1, tag2'
+  end
+
+  test 'test form to fill tags' do
+    get new_image_path
+
+    assert_response :ok
+    assert_select 'div[class="form-group string optional image_tag_list"]'
+>>>>>>> 7c357cbafe341796b577927164b3c22da517e143
   end
 end

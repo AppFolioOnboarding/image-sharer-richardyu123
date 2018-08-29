@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 
+gem 'acts-as-taggable-on', '~> 6.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'bootstrap'
 gem 'bootstrap-sass'

@@ -34,6 +34,6 @@ class ImagesController < ApplicationController
   private
 
   def new_image_params
-    params[:image].permit(:link)
+    params[:image].permit(:link, :tag_list)
   end
 end

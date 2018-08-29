@@ -2,18 +2,8 @@
   <div class="container">
     <div class="row">
       <% @images.each do |img| %>
-        <div class="card">
-          <%= image_tag(img.link, width: "350")%>
-          <div class="card-body">
-            <h5 class="card-title">Tags:</h5>
-            <p class="card-text">
-              <% img.tag_list.each do |tag|%>
-                <%= link_to tag, images_path(tags: tag) %>
-              <% end %>
-            </p>
-          </div>
-        </div>
-      <% end %>
+        <%= render partial: 'image_card', locals: { img: img }%>
+    <% end %>
     </div>
   </div>
 </div>

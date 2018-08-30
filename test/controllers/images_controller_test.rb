@@ -43,8 +43,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'test show' do
-    image = Image.create!(link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bucephala-albeola-010.jpg/1200px-Bucephala-albeola-010.jpg')
-
+    image = Image.create!(link: 'http://www.google.com/')
     get image_path(image)
 
     assert_response :ok

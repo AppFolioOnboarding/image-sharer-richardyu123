@@ -156,4 +156,29 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_select '.invalid-feedback', %(Tag list can't be blank)
   end
+
+  test 'test edit' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    get edit_image_path(image)
+
+    assert_response :ok
+    assert_select 'form'
+    assert_select 'label', 'Updated Image tags *'
+  end
+
+  test 'test update' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    put image_path image, params: { image: { tag_list: 'a' } }
+
+    assert_redirected_to image_path(image)
+    assert_equal ['a'], image.reload.tag_list
+  end
+
+  test 'test update fails on empty' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    put image_path image, params: { image: { tag_list: '' } }
+
+    assert_response :unprocessable_entity
+    assert_select '.invalid-feedback', %(Tag list can't be blank)
+  end
 end

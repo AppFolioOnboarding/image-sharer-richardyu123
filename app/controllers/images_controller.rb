@@ -1,4 +1,17 @@
 class ImagesController < ApplicationController
+  def edit
+    @image = Image.find(params[:id])
+  end
+
+  def update
+    @image = Image.find(params[:id])
+    if @image.update(update_image_params)
+      redirect_to image_path(@image)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def index
     tags = params[:tags]
     @images = if tags.present?
@@ -45,5 +58,9 @@ class ImagesController < ApplicationController
 
   def new_image_params
     params[:image].permit(:link, :tag_list)
+  end
+
+  def update_image_params
+    params[:image].permit(:tag_list)
   end
 end

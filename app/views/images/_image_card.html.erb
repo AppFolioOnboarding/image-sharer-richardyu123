@@ -7,6 +7,7 @@
         <%= link_to tag, images_path(tags: tag) %>
       <% end %>
     </p>
+    <%= link_to 'Edit tags', edit_image_path(img), class: 'btn btn-primary' %>
     <%= link_to 'Delete', image_path(img), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
   </div>
 </div>

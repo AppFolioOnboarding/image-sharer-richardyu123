@@ -1,16 +1,13 @@
 <div class="container">
-<%= simple_form_for @image do |form| %>
-  <p>
-    <%= form.input :link, label: 'Image link' %>
-  </p>
-  <span class="js-errors"> <%= errors if local_assigns[:errors] %> </span>
-  <p>
-    <%= form.input :tag_list, label: 'Image tag', input_html: { value: @image.tag_list.to_s } %>
-  </p>
-  <p>
-    <%= button_tag(type: 'submit', class: "btn btn-outline-primary") do %>
-      <i class="icon-ok icon-white"></i> Save
-    <% end %>
-  </p>
-<% end %>
+  <%= simple_form_for @image do |form| %>
+    <p>
+      <%= form.input :link, label: 'Image link' %>
+    </p>
+    <p>
+      <%= form.input :tag_list, label: 'Image tag', input_html: { value: @image.tag_list.to_s } %>
+    </p>
+    <p>
+      <%= form.submit 'Save', class: "btn btn-outline-primary" %>
+    </p>
+  <% end %>
 </div>

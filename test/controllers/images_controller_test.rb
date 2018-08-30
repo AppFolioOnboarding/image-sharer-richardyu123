@@ -23,7 +23,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_select '.js-errors', %(can't be blank)
+    assert_select '.invalid-feedback', %(Link can't be blank and Link is not a valid URL)
   end
 
   test 'test create failure on invalid url' do
@@ -32,7 +32,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_select '.js-errors', %(is not a valid URL)
+    assert_select '.invalid-feedback', %(Link is not a valid URL)
   end
 
   test 'test invalid address' do
@@ -43,8 +43,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'test show' do
-    image = Image.create!(link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bucephala-albeola-010.jpg/1200px-Bucephala-albeola-010.jpg')
-
+    image = Image.create!(link: 'http://www.google.com/')
     get image_path(image)
 
     assert_response :ok
@@ -133,5 +132,22 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_select 'img', false
+  end
+
+  test 'test destroy' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    assert_difference 'Image.count', -1 do
+      delete image_path(image)
+    end
+
+    assert_redirected_to images_path
+  end
+
+  test 'test delete button shows' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a, b, c')
+    get image_path(image)
+
+    assert_response :ok
+    assert_select '.btn.btn-danger'
   end
 end

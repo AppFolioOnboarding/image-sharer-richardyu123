@@ -1,9 +1,7 @@
 <div class="album text-muted">
-  <div class="container">
     <div class="row">
       <% @images.each do |img| %>
         <%= render partial: 'image_card', locals: { img: img }%>
     <% end %>
     </div>
-  </div>
 </div>

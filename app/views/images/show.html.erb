@@ -1,3 +1,2 @@
-<div class="container">
-  <%= image_tag(@image.link) %>
-</div>
+<%= render partial: 'image_card', locals: { img: @image } %>
+

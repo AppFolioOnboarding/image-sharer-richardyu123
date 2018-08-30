@@ -1,0 +1,9 @@
+<%= render partial: 'image_card', locals: { img: @image } %>
+<%= simple_form_for @image do |form| %>
+  <p>
+    <%= form.input :tag_list, label: 'Updated Image tags', input_html: { value: @image.tag_list.to_s } %>
+  </p>
+  <p>
+    <%= form.submit 'Save', class: "btn btn-outline-primary" %>
+  </p>
+<% end %>

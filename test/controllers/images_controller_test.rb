@@ -10,7 +10,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
   test 'test create' do
     assert_difference 'Image.count' do
-      post images_path, params: { image: { link: 'http://www.google.com/' } }
+      post images_path, params: { image: { link: 'http://www.google.com/', tag_list: 'a' } }
     end
 
     assert_redirected_to image_path(Image.last)
@@ -43,7 +43,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'test show' do
-    image = Image.create!(link: 'http://www.google.com/')
+    image = Image.create!(link: 'http://www.google.com/', tag_list: 'a')
     get image_path(image)
 
     assert_response :ok
@@ -58,7 +58,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'test index with image' do
-    Image.create!(link: 'http://www.google.com/')
+    Image.create!(link: 'http://www.google.com/', tag_list: 'a')
     get images_path
 
     assert_response :ok
@@ -83,10 +83,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'test multiple tags separated by comma' do
-    image = Image.create!(link: 'https://www.google.com/')
-    image.tags.create(name: 'tag1')
-    image.tags.create(name: 'tag2')
-    image.save!
+    Image.create!(link: 'https://www.google.com/', tag_list: 'tag1, tag2')
 
     get images_path
 
@@ -99,7 +96,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     get new_image_path
 
     assert_response :ok
-    assert_select 'div[class="form-group string optional image_tag_list"]'
+    assert_select 'div[class="form-group string required image_tag_list"]'
   end
 
   test 'test images with a certain tag show' do
@@ -149,5 +146,14 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_select '.btn.btn-danger'
+  end
+
+  test 'test requres tags' do
+    assert_no_difference 'Image.count' do
+      post images_path, params: { image: { link: 'https://www.image1.com/' } }
+    end
+
+    assert_response :unprocessable_entity
+    assert_select '.invalid-feedback', %(Tag list can't be blank)
   end
 end

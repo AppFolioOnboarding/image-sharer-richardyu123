@@ -23,7 +23,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_select '.js-errors', %(can't be blank)
+    assert_select '.invalid-feedback', %(Link can't be blank and Link is not a valid URL)
   end
 
   test 'test create failure on invalid url' do
@@ -32,7 +32,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :unprocessable_entity
-    assert_select '.js-errors', %(is not a valid URL)
+    assert_select '.invalid-feedback', %(Link is not a valid URL)
   end
 
   test 'test invalid address' do

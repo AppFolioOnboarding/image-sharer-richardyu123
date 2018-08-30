@@ -2,7 +2,7 @@
   <%= link_to image_tag(img.link, width: "350"), image_path(img) %>
   <div class="card-body">
     <h5 class="card-title">Tags:</h5>
-    <p class="card-text">
+    <p class="card-text js-tags">
       <% img.tag_list.each do |tag|%>
         <%= link_to tag, images_path(tags: tag) %>
       <% end %>

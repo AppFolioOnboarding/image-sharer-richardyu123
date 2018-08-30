@@ -35,3 +35,5 @@ end
 ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 Capybara.default_driver = Capybara.javascript_driver
+
+AePageObjects::Element.include(PageObjects::Extensions::ElementInlineErrorMessage)

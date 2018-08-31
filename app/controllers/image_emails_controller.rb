@@ -24,7 +24,7 @@ class ImageEmailsController < ApplicationController
     @image_email = ImageEmail.new(image_email_params)
 
     if @image_email.save
-      ImageEmailMailer.send_email(@image_email).deliver
+      ImageEmailMailer.send_email(@image_email, request.base_url + images_path).deliver
       flash[:success] = 'Image email was successfully created.'
       redirect_to images_path
     else

@@ -29,7 +29,7 @@ class ImageEmailsController < ApplicationController
       redirect_to images_path
     else
       flash[:failure] = 'Image email was not successfully created'
-      redirect_back fallback_location: root_path
+      redirect_to images_path
     end
   end
 

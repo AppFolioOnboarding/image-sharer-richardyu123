@@ -32,3 +32,15 @@ body {
 form, label, h1 {
   color: white !important;
 }
+
+.alert {
+  color: white
+}
+
+.alert-failure {
+  background: red;
+}
+
+.alert-success {
+  background: blue;
+}

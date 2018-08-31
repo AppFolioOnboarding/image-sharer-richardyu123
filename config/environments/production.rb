@@ -59,6 +59,17 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "base_#{Rails.env}"
   config.action_mailer.perform_caching = false
+=begin
+  config.action_mailer.smtp_settings = (
+  :user_name => 'ropes@appfolio.com',
+    :password => 'Appfolio5%',
+    :domain => 'Appfolio.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  )
+=end
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

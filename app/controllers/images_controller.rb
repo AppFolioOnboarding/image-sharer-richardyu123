@@ -47,6 +47,7 @@ class ImagesController < ApplicationController
 
   def share
     @image = Image.find(params[:image_id])
+    @image_email = ImageEmail.new
   end
 
   def destroy

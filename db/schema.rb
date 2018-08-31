@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_233663) do
+ActiveRecord::Schema.define(version: 2018_08_31_183833) do
+
+  create_table "image_emails", force: :cascade do |t|
+    t.string "message"
+    t.string "image_link", null: false
+    t.string "address", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "images", force: :cascade do |t|
     t.string "link", null: false

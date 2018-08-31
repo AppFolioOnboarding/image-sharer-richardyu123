@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>You have been sent an image!</h1>
+<p>
+  <%= image_tag(@email.image_link) %>
+</p>
+<p>
+  <%= @email.message if @email.message.present? %>
+</p>
+<p>
+  Thank you, if you want to view more images checkout <%= @url %>!
+</p>
+</body>
+</html>

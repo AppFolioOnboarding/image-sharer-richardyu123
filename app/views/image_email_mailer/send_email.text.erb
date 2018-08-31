@@ -1,0 +1,4 @@
+You have been sent an image!
+<%= image_tag(@email.image_link) %>
+<%= @email.message if @email.message.present? %>
+Thank you, if you want to view more images checkout <%= @url %>!

@@ -1,0 +1,17 @@
+<h1>Send Image</h1>
+<%= render partial: 'image_card', locals: { img: @image } %>
+
+<%= simple_form_for @image_email do |form| %>
+  <p>
+    <%= form.hidden_field :image_link, value: @image.link %>
+  </p>
+  <p>
+    <%= form.input :address, label: 'Recipient Email Address' %>
+  </p>
+  <p>
+    <%= form.input :message, label: 'Message' %>
+  </p>
+  <p>
+    <%= form.submit 'Send', class: "btn btn-outline-primary" %>
+  </p>
+<% end %>

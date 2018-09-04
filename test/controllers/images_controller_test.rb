@@ -65,6 +65,22 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'img'
   end
 
+  test 'test index has share button' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a')
+    get images_path
+
+    assert_response :ok
+    assert_select "a.btn[href=\"#{image_share_path(image)}\"]", text: 'Share'
+  end
+
+  test 'test share image page' do
+    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a')
+    get image_share_path(image)
+
+    assert_response :ok
+    assert_select 'img'
+  end
+
   test 'test adding tags' do
     Image.create!(link: 'https://www.google.com/', tag_list: 'a, b, c, d')
     get new_image_path
@@ -148,7 +164,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '.btn.btn-danger'
   end
 
-  test 'test requres tags' do
+  test 'test requires tags' do
     assert_no_difference 'Image.count' do
       post images_path, params: { image: { link: 'https://www.image1.com/' } }
     end

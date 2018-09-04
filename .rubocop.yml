@@ -7,6 +7,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'bin/*'
     - 'db/migrate/*'
+    - 'config/**/*'
   TargetRubyVersion: 2.5
 
 Layout/IndentArray:

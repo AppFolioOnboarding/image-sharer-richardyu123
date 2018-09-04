@@ -1,23 +1,4 @@
 class ImageEmailsController < ApplicationController
-  before_action :set_image_email, only: %i[show edit update destroy]
-
-  # GET /image_emails
-  def index
-    @image_emails = ImageEmail.all
-  end
-
-  # GET /image_emails/1
-  def show; end
-
-  # GET /image_emails/new
-  def new
-    @image_email = ImageEmail.new
-  end
-
-  # GET /image_emails/1/edit
-  def edit; end
-
-  # POST /image_emails
   def create
     @image_email = ImageEmail.new(image_email_params)
 
@@ -31,27 +12,7 @@ class ImageEmailsController < ApplicationController
     redirect_to images_path
   end
 
-  # PATCH/PUT /image_emails/1
-  def update
-    if @image_email.update(image_email_params)
-      redirect_to @image_email, notice: 'Image email was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /image_emails/1
-  def destroy
-    @image_email.destroy
-    redirect_to image_emails_url, notice: 'Image email was successfully destroyed.'
-  end
-
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_image_email
-    @image_email = ImageEmail.find(params[:id])
-  end
 
   # Only allow a trusted parameter "white list" through.
   def image_email_params

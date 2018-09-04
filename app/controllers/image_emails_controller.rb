@@ -6,7 +6,7 @@ class ImageEmailsController < ApplicationController
       ImageEmailMailer.send_email(@image_email, request.base_url + images_path).deliver
       flash[:success] = 'Image email was successfully created.'
     else
-      flash[:failure] = 'Image email was not successfully created'
+      flash[:failure] = 'Image email was not successfully created.'
     end
 
     redirect_to images_path

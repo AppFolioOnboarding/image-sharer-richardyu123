@@ -1,5 +1,5 @@
 class ImageEmailsController < ApplicationController
-  before_action :set_image_email, only: [:show, :edit, :update, :destroy]
+  before_action :set_image_email, only: %i[show edit update destroy]
 
   # GET /image_emails
   def index
@@ -7,8 +7,7 @@ class ImageEmailsController < ApplicationController
   end
 
   # GET /image_emails/1
-  def show
-  end
+  def show; end
 
   # GET /image_emails/new
   def new
@@ -16,8 +15,7 @@ class ImageEmailsController < ApplicationController
   end
 
   # GET /image_emails/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /image_emails
   def create
@@ -26,11 +24,11 @@ class ImageEmailsController < ApplicationController
     if @image_email.save
       ImageEmailMailer.send_email(@image_email, request.base_url + images_path).deliver
       flash[:success] = 'Image email was successfully created.'
-      redirect_to images_path
     else
       flash[:failure] = 'Image email was not successfully created'
-      redirect_to images_path
     end
+
+    redirect_to images_path
   end
 
   # PATCH/PUT /image_emails/1

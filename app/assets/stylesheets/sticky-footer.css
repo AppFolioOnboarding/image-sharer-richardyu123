@@ -30,7 +30,11 @@ body {
 
 
 form, label, h1 {
-  color: white !important;
+  color: white;
+}
+
+.modal_label {
+  color: black;
 }
 
 .alert {

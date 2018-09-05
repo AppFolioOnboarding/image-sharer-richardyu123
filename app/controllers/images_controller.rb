@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   def edit
     @image = Image.find(params[:id])
+    @image_email = ImageEmail.new
   end
 
   def update
@@ -20,6 +21,7 @@ class ImagesController < ApplicationController
                 Image.all
               end
     @images = @images.order('created_at DESC')
+    @image_email = ImageEmail.new
   end
 
   def new
@@ -39,6 +41,7 @@ class ImagesController < ApplicationController
   def show
     if Image.exists?(params[:id])
       @image = Image.find(params[:id])
+      @image_email = ImageEmail.new
     else
       @image = Image.new
       render :new, status: :not_found

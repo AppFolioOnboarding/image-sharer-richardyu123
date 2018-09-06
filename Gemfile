@@ -10,6 +10,7 @@ gem 'ae_page_objects'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'bootstrap'
 gem 'bootstrap-sass'
+gem 'browserify-rails'
 gem 'rails', '~> 5.2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

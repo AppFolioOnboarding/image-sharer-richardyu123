@@ -7,3 +7,5 @@
     <%= form.submit 'Save', class: "btn btn-outline-primary" %>
   </p>
 <% end %>
+
+<%= render partial: 'share_form_modal', locals: { image_email: @image_email } %>

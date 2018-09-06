@@ -1,7 +1,11 @@
 <div class="album text-muted">
-    <div class="row">
-      <% @images.each do |img| %>
-        <%= render partial: 'image_card', locals: { img: img, image_email: @image_email }%>
+  <div class="row">
+    <% @images.each do |img| %>
+      <%= render partial: 'image_card', locals: { img: img } %>
     <% end %>
-    </div>
+  </div>
+</div>
+
+<div id="hello">
+  <%= render partial: 'share_form_modal', locals: { image_email: @image_email } %>
 </div>

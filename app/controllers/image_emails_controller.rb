@@ -4,12 +4,12 @@ class ImageEmailsController < ApplicationController
 
     if @image_email.valid?
       ImageEmailMailer.send_email(@image_email, request.base_url + images_path).deliver
-      flash[:success] = 'Image email was successfully created.'
+      flash.now[:success] = 'Image email was successfully created.'
+      render json: { flash: render_to_string(partial: 'layouts/flash', format: :html) }, status: :ok
     else
-      flash[:failure] = 'Image email was not successfully created.'
+      render json: { error_modal: render_to_string(partial: 'images/share_form_modal', locals: { image_email: @image_email }, format: :html) }, status: :unprocessable_entity
     end
 
-    redirect_to images_path
   end
 
   private

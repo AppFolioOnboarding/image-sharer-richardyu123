@@ -66,13 +66,12 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'test index has share button' do
-    image = Image.create!(link: 'https://www.image1.com/', tag_list: 'a')
+    Image.create!(link: 'https://www.image1.com/', tag_list: 'a')
     get images_path
 
     assert_response :ok
-    assert_select "a.btn[href=\"#{image_share_path(image)}\"]", text: 'Share'
+    assert_select "a.btn[data-target=\"\#shareImage\"]", text: 'Share'
   end
-
 
   test 'test adding tags' do
     Image.create!(link: 'https://www.google.com/', tag_list: 'a, b, c, d')

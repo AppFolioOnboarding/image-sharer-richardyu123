@@ -6,6 +6,7 @@ class ImagesController < ApplicationController
 
   def update
     @image = Image.find(params[:id])
+    @image_email = ImageEmail.new
     if @image.update(update_image_params)
       redirect_to image_path(@image)
     else

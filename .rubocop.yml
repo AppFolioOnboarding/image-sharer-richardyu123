@@ -26,6 +26,9 @@ Metrics/ClassLength:
   Exclude:
   - 'test/**/*'
 
+Metrics/AbcSize:
+  Max: 20
+
 Rails:
   Enabled: true
 

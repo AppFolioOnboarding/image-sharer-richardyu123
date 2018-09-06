@@ -16,7 +16,7 @@ class ImageEmailsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
 
     json_response = JSON.parse(response.body)
-    assert_includes json_response['error_modal'],'Address can&#39;t be blank and Address is invalid'
+    assert_includes json_response['error_modal'],  'Address can&#39;t be blank and Address is invalid'
   end
 
   test 'test invalid emails fail' do
@@ -25,6 +25,6 @@ class ImageEmailsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
 
     json_response = JSON.parse(response.body)
-    assert_includes json_response['error_modal'],'Address is invalid'
+    assert_includes json_response['error_modal'], 'Address is invalid'
   end
 end

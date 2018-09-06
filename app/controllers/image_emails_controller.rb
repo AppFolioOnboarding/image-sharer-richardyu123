@@ -9,7 +9,6 @@ class ImageEmailsController < ApplicationController
     else
       render json: { error_modal: render_to_string(partial: 'images/share_form_modal', locals: { image_email: @image_email }, format: :html) }, status: :unprocessable_entity
     end
-
   end
 
   private

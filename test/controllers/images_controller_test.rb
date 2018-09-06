@@ -70,7 +70,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     get images_path
 
     assert_response :ok
-    assert_select "div.btn[data-target=\"\#shareImage\"]", text: 'Share'
+    assert_select "a.btn[data-target=\"\#shareImage\"]", text: 'Share'
   end
 
   test 'test adding tags' do

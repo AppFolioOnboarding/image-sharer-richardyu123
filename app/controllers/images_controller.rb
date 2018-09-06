@@ -48,11 +48,6 @@ class ImagesController < ApplicationController
     end
   end
 
-  def share
-    @image = Image.find(params[:image_id])
-    @image_email = ImageEmail.new
-  end
-
   def destroy
     if Image.exists?(params[:id])
       image = Image.find(params[:id])

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" id=<%="image_#{img.id}" %>>
   <%= link_to image_tag(img.link, width: "350"), image_path(img) %>
   <div class="card-body">
     <h5 class="card-title">Tags:</h5>
@@ -7,9 +7,9 @@
         <%= link_to tag, images_path(tags: tag) %>
       <% end %>
     </p>
-    <div class="btn btn-primary" data-toggle="modal"
+    <a href="#" class="btn btn-primary" data-toggle="modal"
          data-target="#shareImage" data-link=<%= img.link %>>Share
-    </div>
+    </a>
 
 
     <%= link_to 'Edit tags', edit_image_path(img), class: 'btn btn-primary' %>

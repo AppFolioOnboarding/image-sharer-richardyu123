@@ -1,5 +1,5 @@
 require 'flow_test_helper'
-class ImagesCrudTest < FlowTestCase
+class ImagesTest < FlowTestCase
   test 'add an image' do
     images_index_page = PageObjects::Images::IndexPage.visit
     new_image_page = images_index_page.add_new_image!
@@ -63,5 +63,31 @@ class ImagesCrudTest < FlowTestCase
     assert_not images_index_page.showing_image?(link: cat_link)
     images_index_page = images_index_page.clear_tag_filter!
     assert_equal 3, images_index_page.images.count
+  end
+
+  test 'share an image' do
+    puppy_link1 = 'http://www.pawderosa.com/images/puppies.jpg'
+    puppy_link2 = 'http://ghk.h-cdn.co/assets/16/09/980x490/landscape-1457107485-gettyimages-512366437.jpg'
+    cat_link = 'http://www.ugly-cat.com/ugly-cats/uglycat041.jpg'
+    image1, _image2, _image3 = Image.create!([
+      { link: puppy_link1, tag_list: 'superman, cute' },
+      { link: puppy_link2, tag_list: 'cute, puppy' },
+      { link: cat_link, tag_list: 'cat, ugly' }
+    ])
+    images_index_page = PageObjects::Images::IndexPage.visit
+    [puppy_link1, puppy_link2, cat_link].each do |link|
+      assert images_index_page.showing_image?(link: link)
+    end
+    images_index_page.share(image1.id) do |modal|
+      modal.send_email(address: 'a@b.com')
+    end
+
+    assert_equal 'Image email was successfully created.', images_index_page.flash_message.text
+
+    images_index_page.share(image1.id) do |modal|
+      modal.send_email(address: 'a')
+      assert_equal 'Address is invalid', modal.error.text
+      modal.close
+    end
   end
 end

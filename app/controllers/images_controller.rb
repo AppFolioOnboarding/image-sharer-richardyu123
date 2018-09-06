@@ -1,10 +1,12 @@
 class ImagesController < ApplicationController
   def edit
     @image = Image.find(params[:id])
+    @image_email = ImageEmail.new
   end
 
   def update
     @image = Image.find(params[:id])
+    @image_email = ImageEmail.new
     if @image.update(update_image_params)
       redirect_to image_path(@image)
     else
@@ -20,6 +22,7 @@ class ImagesController < ApplicationController
                 Image.all
               end
     @images = @images.order('created_at DESC')
+    @image_email = ImageEmail.new
   end
 
   def new
@@ -39,15 +42,11 @@ class ImagesController < ApplicationController
   def show
     if Image.exists?(params[:id])
       @image = Image.find(params[:id])
+      @image_email = ImageEmail.new
     else
       @image = Image.new
       render :new, status: :not_found
     end
-  end
-
-  def share
-    @image = Image.find(params[:image_id])
-    @image_email = ImageEmail.new
   end
 
   def destroy

@@ -1,14 +1,19 @@
-<div class="card">
+<div class="card" id=<%="image_#{img.id}" %>>
   <%= link_to image_tag(img.link, width: "350"), image_path(img) %>
   <div class="card-body">
     <h5 class="card-title">Tags:</h5>
     <p class="card-text js-tags">
-      <% img.tag_list.each do |tag|%>
+      <% img.tag_list.each do |tag| %>
         <%= link_to tag, images_path(tags: tag) %>
       <% end %>
     </p>
-    <a href="<%= image_share_path(img) %>" class="btn btn-primary">Share</a>
+    <a href="#" class="btn btn-primary" data-toggle="modal"
+         data-target="#shareImage" data-link=<%= img.link %>>Share
+    </a>
+
+
     <%= link_to 'Edit tags', edit_image_path(img), class: 'btn btn-primary' %>
     <%= link_to 'Delete', image_path(img), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
   </div>
 </div>
+

@@ -1,2 +1,3 @@
-<%= render partial: 'image_card', locals: { img: @image } %>
+<%= render partial: 'image_card', locals: { img: @image, image_email: @image_email } %>
 
+<%= render partial: 'share_form_modal', locals: { image_email: @image_email } %>
